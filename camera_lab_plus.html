@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Camera Lab+ — Demo</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    background:
+      radial-gradient(circle at 50% 5%, rgba(255, 230, 0, .10), transparent 28%),
+      #171807;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 28px 16px;
+  }
+
+  .page {
+    width: min(440px, 100%);
+    text-align: center;
+  }
+
+  .logo {
+    width: 68px;
+    height: 68px;
+    margin: 0 auto 18px;
+    border: 3px solid #ffe900;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: #ffe900;
+    font-size: 31px;
+    font-weight: 900;
+    box-shadow: 0 0 30px rgba(255,233,0,.12);
+  }
+
+  h1 {
+    font-size: 36px;
+    margin: 0 0 10px;
+    letter-spacing: -1px;
+  }
+
+  .subtitle {
+    color: #ddd;
+    font-size: 16px;
+    margin-bottom: 28px;
+  }
+
+  .plan {
+    position: relative;
+    text-align: left;
+    background: #292929;
+    border: 2px solid #756d32;
+    border-radius: 18px;
+    padding: 23px 22px;
+    margin: 14px 0;
+    cursor: pointer;
+    transition: .2s ease;
+  }
+
+  .plan.selected {
+    border-color: #ffe900;
+    box-shadow: 0 0 0 1px rgba(255,233,0,.15);
+  }
+
+  .plan:hover {
+    transform: translateY(-2px);
+    border-color: #ffe900;
+  }
+
+  .plan-title {
+    font-size: 21px;
+    font-weight: 700;
+    margin-bottom: 9px;
+  }
+
+  .price {
+    font-size: 28px;
+    font-weight: 800;
+    color: #ffe900;
+  }
+
+  .small {
+    color: #aaa;
+    font-size: 13px;
+    margin-top: 7px;
+  }
+
+  .radio {
+    position: absolute;
+    right: 22px;
+    top: 30px;
+    width: 28px;
+    height: 28px;
+    border: 2px solid #777;
+    border-radius: 50%;
+  }
+
+  .selected .radio {
+    border-color: #ffe900;
+  }
+
+  .selected .radio::after {
+    content: "✓";
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    color: #ffe900;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .terms {
+    color: #8f8f8f;
+    font-size: 11px;
+    line-height: 1.55;
+    margin: 24px 12px;
+  }
+
+  .continue {
+    width: 100%;
+    border: 0;
+    border-radius: 30px;
+    padding: 17px;
+    background: #ffe900;
+    color: #171807;
+    font-size: 18px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: .2s ease;
+  }
+
+  .continue:hover {
+    transform: scale(1.015);
+    box-shadow: 0 8px 28px rgba(255,233,0,.18);
+  }
+
+  .demo {
+    margin-top: 16px;
+    color: #777;
+    font-size: 11px;
+  }
+
+  .notice {
+    display: none;
+    margin-top: 18px;
+    padding: 14px;
+    border-radius: 12px;
+    background: #252525;
+    color: #ddd;
+    font-size: 13px;
+  }
+</style>
+</head>
+
+<body>
+<main class="page">
+
+  <div class="logo">✦</div>
+
+  <h1>Camera Lab+</h1>
+  <div class="subtitle">Exclusive, experimental and pre-release features</div>
+
+  <div class="plan selected" onclick="selectPlan(this)">
+    <div class="plan-title">Free Plan</div>
+    <div class="price">FREE</div>
+    <div class="small">Full access to the camera-sharing demo</div>
+    <div class="radio"></div>
+  </div>
+
+  <div class="plan" onclick="selectPlan(this)">
+    <div class="plan-title">Premium Demo</div>
+    <div class="price">FREE</div>
+    <div class="small">Experimental features • No payment required</div>
+    <div class="radio"></div>
+  </div>
+
+  <div class="terms">
+    This is an educational demo. No payment details or passwords are requested.
+    Camera access will only begin after the device owner explicitly grants
+    browser permission.
+  </div>
+
+  <button class="continue" onclick="continueDemo()">Continue</button>
+
+  <div id="notice" class="notice">
+    Camera Lab+ selected. The next screen can ask the user for explicit camera
+    permission before starting WebRTC.
+  </div>
+
+  <div class="demo">CAMERA LAB • EDUCATIONAL WEBRTC DEMO</div>
+</main>
+
+<script>
+  function selectPlan(card) {
+    document.querySelectorAll('.plan').forEach(p => p.classList.remove('selected'));
+    card.classList.add('selected');
+  }
+
+  function continueDemo() {
+    const notice = document.getElementById('notice');
+    notice.style.display = 'block';
+    notice.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+</script>
+</body>
+</html>
